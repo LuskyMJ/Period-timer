@@ -6,7 +6,7 @@ let DOMPeriods = document.getElementById("periods");
 // Other variables
 let periods = [];
 
-// Hardcoded NNN
+// Hardcoded period
 let period = new Period("Fortnite battle pass",  new Date(2022, 10, 6),  new Date(2022, 11, 10));
 periods.push(period);
 
