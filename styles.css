@@ -1,0 +1,52 @@
+* {
+    font-family: "Roboto", sans-serif;
+}
+
+.container {
+    margin-top: 5;
+    margin-bottom: 5;
+}
+
+.flex-container-horizontal {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+.flex-container-vertical {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.toLeft {
+    display: flex;
+    flex: 1;
+    justify-content: left;
+    margin-top: 5;
+    margin-bottom: 5;
+}
+
+.toCenter {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    margin-top: 5;
+    margin-bottom: 5;
+}
+
+.toRight {
+    display: flex;
+    flex: 1;
+    justify-content: end;
+    margin-top: 5;
+    margin-bottom: 5;
+}
+
+.toLeft p {
+    padding-left: 10;
+}
+
+.toRight p {
+    padding-right: 10;
+}
