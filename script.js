@@ -2,6 +2,20 @@ import { Period } from "./period.js";
 
 // DOM Elemeents
 let DOMPeriods = document.getElementById("periods");
+let submitButton = document.getElementById("submitButton");
+
+let startYear = document.getElementById("startYear");
+let endYear = document.getElementById("endYear");
+let startMonth = document.getElementById("startMonth");
+let endMonth = document.getElementById("endMonth");
+let startDay = document.getElementById("startDay");
+let endDay = document.getElementById("endDay");
+let startHour = document.getElementById("startHour");
+let endHour = document.getElementById("endHour");
+let startMinute = document.getElementById("startMinute");
+let endMinute = document.getElementById("endMinute");
+let startSecond = document.getElementById("startSecond");
+let endSecond = document.getElementById("endSecond");
 
 // Other variables
 let periods = [];
@@ -17,6 +31,7 @@ let createPeriods = () => {
 }
 
 let createPeriod = (periodIndex) => {
+
     // Create title
     let titleText = document.createElement("h3");
     titleText.innerText = periods[periodIndex].title;
@@ -103,7 +118,6 @@ let updateStartTime = (periodIndex) => {
     DOMPeriods.childNodes[periodIndex + 3].childNodes[1].firstChild.firstChild.innerText = niceFormat(periods[periodIndex].startDate);
 }
 
-// Functions for making stuff look more clean
 let calculatePercentage = (periodIndex, toString) => {
     let totalTime = periods[periodIndex].endDate - periods[periodIndex].startDate;
     let timeSinceStart = new Date() - periods[periodIndex].startDate;
@@ -126,6 +140,13 @@ let niceFormat = (date) => {
     let minutes = date.getMinutes().toString().padStart(2, "0");
     let seconds = date.getSeconds().toString().padStart(2, "0");
     return date.toDateString() + " " + hours + ":" + minutes + ":" + seconds;
+}
+
+submitButton.onclick = () => {
+
+
+
+    createPeriod(periods.length-1);
 }
 
 createPeriods();
