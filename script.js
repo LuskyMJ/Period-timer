@@ -3,6 +3,7 @@ import { Period } from "./period.js";
 // DOM Elemeents
 let DOMPeriods = document.getElementById("periods");
 let submitButton = document.getElementById("submitButton");
+let title = document.getElementById("title");
 
 let startYear = document.getElementById("startYear");
 let endYear = document.getElementById("endYear");
@@ -21,11 +22,14 @@ let endSecond = document.getElementById("endSecond");
 let periods = [];
 
 // Hardcoded period
-let period = new Period("Fortnite battle pass",  new Date(2022, 10, 6),  new Date(2022, 11, 10));
-periods.push(period);
+// let period = new Period("Fortnite battle pass",  new Date(2022, 10, 6),  new Date(2022, 11, 10));
 
-let createPeriods = () => {
+let firstRun = () => {
+    periods = JSON.parse(localStorage.getItem("periods"));
+    if (periods == null) periods = [];
+
     for (let i = 0; i < periods.length; i++) {
+        periods[i] = new Period(periods[i].title, new Date(periods[i].startDate), new Date(periods[i].endDate));
         createPeriod(i);
     }
 }
@@ -109,12 +113,12 @@ let update = () => {
         DOMPeriods.childNodes[periodIndex + 3].childNodes[2].firstChild.setAttribute("style", "width: " + calculatePercentage(periodIndex, true));
         DOMPeriods.childNodes[periodIndex + 3].childNodes[4].firstChild.innerText = calculateBonus(periodIndex, true);
     }
-
     setTimeout(update, 1000);
 }
 
 let updateStartTime = (periodIndex) => {
     periods[periodIndex].startDate = new Date();
+    localStorage.setItem("periods", JSON.stringify(periods));
     DOMPeriods.childNodes[periodIndex + 3].childNodes[1].firstChild.firstChild.innerText = niceFormat(periods[periodIndex].startDate);
 }
 
@@ -144,9 +148,17 @@ let niceFormat = (date) => {
 
 submitButton.onclick = () => {
 
+    let startDate = new Date(startYear.value, startMonth.value-1, startDay.value, startHour.value, startMinute.value, startSecond.value);
+    let endDate = new Date(endYear.value, endMonth.value-1, endDay.value, endHour.value, endMinute.value, endSecond.value);
 
-
+    periods.push(new Period(title.value, startDate, endDate));
+    localStorage.setItem("periods", JSON.stringify(periods));
     createPeriod(periods.length-1);
 }
 
-createPeriods();
+firstRun();
+
+// to-do
+// Percentage clamping
+// Selecting current time as starting time
+// Unfuck the way periods are created
