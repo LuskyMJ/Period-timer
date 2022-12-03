@@ -32,6 +32,8 @@ let firstRun = () => {
         periods[i] = new Period(periods[i].title, new Date(periods[i].startDate), new Date(periods[i].endDate));
         createPeriod(i);
     }
+
+    update();
 }
 
 let createPeriod = (periodIndex) => {
@@ -103,8 +105,6 @@ let createPeriod = (periodIndex) => {
     periodCard.appendChild(buttonContainer);
     periodCard.appendChild(bonusContainer);
     DOMPeriods.appendChild(periodCard);
-
-    update();
 }
 
 let update = () => {  
@@ -113,6 +113,7 @@ let update = () => {
         DOMPeriods.childNodes[periodIndex + 3].childNodes[2].firstChild.setAttribute("style", "width: " + calculatePercentage(periodIndex, true));
         DOMPeriods.childNodes[periodIndex + 3].childNodes[4].firstChild.innerText = calculateBonus(periodIndex, true);
     }
+
     setTimeout(update, 1000);
 }
 

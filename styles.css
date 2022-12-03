@@ -50,3 +50,14 @@
 .toRight p {
     padding-right: 10;
 }
+
+.card {
+    margin-top: 10;
+    margin-bottom: 10;
+    border-radius: 2vh;
+}
+
+.progress {
+    margin-left: 5;
+    margin-right: 5;
+}
